@@ -61,7 +61,9 @@ def train_neural_network(x):
 		for epoch in range(hm_epochs):
 			epoch_loss = 0
 			files = os.listdir(pickle_directory) # dir is your directory path
+			file_num = 0
 			for file in files:
+				file_num += 1
 				train_query, train_intent, train_recipe, train_categories, train_calendar, test_query, test_intent, test_recipe, test_categories, test_calendar = pickle.load(open(pickle_directory + file, 'rb'))
 				i=0
 				while i < len(train_query):
@@ -74,10 +76,11 @@ def train_neural_network(x):
 					                                              y: batch_y})
 					epoch_loss += c
 					i+=batch_size
-		print('Epoch', epoch+1, 'completed out of',hm_epochs,'loss:',epoch_loss)
-		correct_prediction = tf.equal(tf.argmax(prediction, 1), tf.argmax(y, 1))
-		accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
-		print("Accuracy:", accuracy.eval({x: test_q, y: test_i}))
+				print("File: " + str(file_num) + " out of " + str(len(files)) + " trained")
+			correct_prediction = tf.equal(tf.argmax(prediction, 1), tf.argmax(y, 1))
+			accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
+			print('Epoch', epoch+1, 'completed out of',hm_epochs,'Loss:',epoch_loss,"Accuracy:", accuracy.eval({x: test_q, y: test_i}))
+
 
 
 train_neural_network(x)
