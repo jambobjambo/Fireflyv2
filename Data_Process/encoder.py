@@ -163,7 +163,7 @@ def gen_vecs(lexicon, intents, recipes, categories, calendar, test_size=0.1):
 		test_calendar = list(training_data[4][:-testing_size])
 
 		with open( Pickle_location + '/' + str(file) + '.pickle', 'wb') as f:
-			pickle.dump([train_query, train_intent, train_recipe, train_categories, train_calendar, test_query, test_intent, test_recipe, test_categories, test_calendar], f)
+			pickle.dump([train_query, train_intent, train_recipe, train_categories, train_calendar, test_query, test_intent, test_recipe, test_categories, test_calendar], f, protocol=2)
 
 		file += 1
 

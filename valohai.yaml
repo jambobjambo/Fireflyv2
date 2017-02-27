@@ -1,9 +1,9 @@
 ---
-  
+
 - step:
     name: Firefly model
     image: gcr.io/tensorflow/tensorflow:0.12.1-devel-gpu
-    command: python3 main.py
+    command: python main.py
 
 - step:
     name: Worker environment check
