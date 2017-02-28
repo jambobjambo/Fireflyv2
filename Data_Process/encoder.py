@@ -30,15 +30,16 @@ def dictionary():
 			#Step 3 Process recipies
 			recipies_per = line[2].lower().split(":")
 			if len(recipies_per) > 1:
-				for recipie in recipies_per:
-					recipies += recipie
+				for i in range(len(recipies_per)):
+					#print(recipies_per[i])
+					recipies.append(recipies_per[i])
 			elif len(recipies_per) == 1:
 				recipies += recipies_per
 			#Step 4 categories
 			cats_per = line[3].lower().split(":")
 			if len(cats_per) > 1:
 				for cats in cats_per:
-					categories += cats
+					categories.append(cats)
 			elif len(cats_per) == 1:
 				recipies += cats_per
 			#Step 5 calendar
@@ -63,7 +64,7 @@ def dictionary():
 		intents_array.append(intent)
 	for rec in recipies_counts:
 		recipies_array.append(rec)
-	for category in categories_array:
+	for category in categorie_counts:
 		categories_array.append(category)
 	for cal in calendar_counts:
 		calendar_array.append(cal)
