@@ -13,7 +13,7 @@ n_nodes_hl2 = 1500
 n_nodes_hl3 = 1500
 
 n_classes = len(train_i[0])
-batch_size = 100
+batch_size = 8000
 hm_epochs = 5
 
 x = tf.placeholder('float')
@@ -56,9 +56,20 @@ def train_neural_network(x):
 	cost = tf.reduce_mean( tf.nn.softmax_cross_entropy_with_logits(prediction,y) )
 	optimizer = tf.train.AdamOptimizer(learning_rate=0.001).minimize(cost)
 
+	# Add ops to save and restore all the variables.
+	saver = tf.train.Saver({
+		"l1-weight": hidden_1_layer['weight'],
+		"l2-weight": hidden_2_layer['weight'],
+		"l2-weight": hidden_3_layer['weight'],
+		"out-weight": output_layer['weight'],
+		"l1-bias": hidden_1_layer['bias'],
+		"l2-bias": hidden_2_layer['bias'],
+		"l2-bias": hidden_3_layer['bias'],
+		"out-bias": output_layer['bias']
+	})
+
 	with tf.Session() as sess:
 		sess.run(tf.global_variables_initializer())
-
 		for epoch in range(hm_epochs):
 			epoch_loss = 0
 			files = os.listdir(pickle_directory + '/Queries') # dir is your directory path
@@ -82,7 +93,14 @@ def train_neural_network(x):
 			correct_prediction = tf.equal(tf.argmax(prediction, 1), tf.argmax(y, 1))
 			accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
 			print('Epoch', epoch+1, 'completed out of',hm_epochs,'Loss:',epoch_loss,"Accuracy:", accuracy.eval({x: test_q, y: test_i}))
+			saver.save(sess, "./Checkpoints/Intent/model.ckpt")
 
+			predy = tf.nn.softmax(prediction)
+			input_array = np.array(test_q[0])
+			input_array = np.reshape(input_array, (-1, 1470))
 
+			classification = predy.eval({x: input_array})
+			print("Actual Intent: " + str(test_i[0]))
+			print("Prediction: " + str(classification[0]))
 
 train_neural_network(x)

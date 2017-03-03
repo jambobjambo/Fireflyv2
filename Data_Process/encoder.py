@@ -222,6 +222,17 @@ def gen_vecs(lexicon, intents, recipes, categories, calendar, test_size=0.1):
 def main():
 	#Generate dictionaries
 	lexicon, intents, recipes, categories, calendar = dictionary()
+	with open( './dictionary/lexicon.pickle', 'wb') as f:
+		pickle.dump([lexicon], f, protocol=2)
+	with open( './dictionary/intents.pickle', 'wb') as f:
+		pickle.dump([intents], f, protocol=2)
+	with open( './dictionary/recipes.pickle', 'wb') as f:
+		pickle.dump([recipes], f, protocol=2)
+	with open( './dictionary/categories.pickle', 'wb') as f:
+		pickle.dump([categories], f, protocol=2)
+	with open( './dictionary/calendar.pickle', 'wb') as f:
+		pickle.dump([calendar], f, protocol=2)
+
 	#Generate vectors
 	gen_vecs(lexicon, intents, recipes, categories, calendar)
 
