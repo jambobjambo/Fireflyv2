@@ -5,6 +5,8 @@ import csv
 import nltk
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
+import argparse
+
 lemmatizer = WordNetLemmatizer()
 
 pickle_directory = './Data_Process/DataForML/'
@@ -12,13 +14,44 @@ pickle_directory = './Data_Process/DataForML/'
 train_q, test_q = pickle.load(open(pickle_directory + '/Queries/' + '0.pickle', 'rb'))
 train_i, test_i = pickle.load(open(pickle_directory + '/Intent/' + '0.pickle', 'rb'))
 lexicon = pickle.load(open('./Data_Process/dictionary/lexicon.pickle', 'rb'))
-intents = pickle.load(open('./Data_Process/dictionary/intents.pickle', 'rb'))
-
 
 x = tf.placeholder('float')
 y = tf.placeholder('float')
 
-n_classes = 4
+parser = argparse.ArgumentParser(description='Process setup')
+parser.add_argument('intents', default='intents',
+                   help='an integer for the accumulator')
+args = parser.parse_args()
+
+in_query = False
+output_array = []
+if(args.intents == "intent"):
+	output_array = pickle.load(open('./Data_Process/dictionary/intents.pickle', 'rb'))
+	saver_locale = "./Checkpoints/Intent/model.ckpt"
+elif(args.intents == "calendar"):
+	output_array = pickle.load(open('./Data_Process/dictionary/calendar.pickle', 'rb'))
+	saver_locale = "./Checkpoints/Calendar/model.ckpt"
+elif(args.intents == "category"):
+	output_array = pickle.load(open('./Data_Process/dictionary/categories.pickle', 'rb'))
+	saver_locale = "./Checkpoints/Category/model.ckpt"
+elif(args.intents == "recipe"):
+	output_array = pickle.load(open('./Data_Process/dictionary/recipes.pickle', 'rb'))
+	saver_locale = "./Checkpoints/Recipe/model.ckpt"
+elif(args.intents == "grouping"):
+	in_query = True
+	output_array = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+	saver_locale = "./Checkpoints/Grouping/model.ckpt"
+elif(args.intents == "attributes"):
+	in_query = True
+	output_array = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+	saver_locale = "./Checkpoints/Attributes/model.ckpt"
+elif(args.intents == "places"):
+	in_query = True
+	output_array = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+	saver_locale = "./Checkpoints/Places/model.ckpt"
+
+output_array = output_array[0]
+n_classes = len(output_array)
 
 n_nodes_hl1 = 1500
 n_nodes_hl2 = 1500
@@ -76,6 +109,14 @@ def gen_query_vec(line, lexicon):
 	vec = np.reshape(feature_set, (len(feature_set) * len(feature_set[0])))
 	return vec
 
+def gen_M_vec(line, array):
+	vec_amount = np.zeros(len(array))
+	l = line.split(":")
+	for rec in l:
+		if rec != "" and rec.lower() in array:
+			rep_index_value = array.index(rec.lower())
+			vec_amount[rep_index_value] += 1
+	return vec_amount
 # Add ops to save and restore all the variables.
 saver = tf.train.Saver({
 	"l1-weight": hidden_1_layer['weight'],
@@ -89,7 +130,8 @@ saver = tf.train.Saver({
 })
 prediction = neural_network_model(x)
 with tf.Session() as sess:
-	saver.restore(sess, "./Checkpoints/Intent/model.ckpt")
+	#saver.restore(sess, "./Checkpoints/Intent/model.ckpt")
+	saver.restore(sess, saver_locale)
 
 	sess.run(tf.global_variables_initializer())
 
@@ -101,6 +143,10 @@ with tf.Session() as sess:
 	input_array = np.reshape(input_array, (-1, 1470))
 
 	classification = predy.eval({x: input_array})
+	print(classification[0])
 	for i in range(len(classification[0])):
 		if classification[0][i] == 1.:
-			print(intents[0][i])
+			if in_query != True:
+				print(output_array[i])
+			else:
+				print(query_input_vec[i])

@@ -14,7 +14,7 @@ n_nodes_hl3 = 1500
 
 n_classes = len(train_i[0])
 batch_size = 8000
-hm_epochs = 5
+hm_epochs = 20
 
 x = tf.placeholder('float')
 y = tf.placeholder('float')
