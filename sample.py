@@ -118,22 +118,11 @@ def gen_M_vec(line, array):
 			vec_amount[rep_index_value] += 1
 	return vec_amount
 # Add ops to save and restore all the variables.
-saver = tf.train.Saver({
-	"l1-weight": hidden_1_layer['weight'],
-	"l2-weight": hidden_2_layer['weight'],
-	"l2-weight": hidden_3_layer['weight'],
-	"out-weight": output_layer['weight'],
-	"l1-bias": hidden_1_layer['bias'],
-	"l2-bias": hidden_2_layer['bias'],
-	"l2-bias": hidden_3_layer['bias'],
-	"out-bias": output_layer['bias']
-})
 prediction = neural_network_model(x)
 with tf.Session() as sess:
-	#saver.restore(sess, "./Checkpoints/Intent/model.ckpt")
-	saver.restore(sess, saver_locale)
-
 	sess.run(tf.global_variables_initializer())
+	saver = tf.train.Saver(tf.global_variables())
+	saver.restore(sess, saver_locale)
 
 	predy = tf.nn.softmax(prediction)
 	query_input = input()
