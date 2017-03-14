@@ -134,5 +134,10 @@ class Model():
 					if in_query != True:
 						output_response = output_array[i]
 					else:
-						output_response = i
+						query_split = query.split(" ")
+						if(i > len(query_split) - 1):
+							output_response = ""
+						else:
+							output_response = query_split[i]
+
 		return output_response

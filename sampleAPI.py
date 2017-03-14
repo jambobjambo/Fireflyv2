@@ -2,6 +2,7 @@ import tensorflow as tf
 import numpy as np
 from flask import Flask, jsonify, request
 from model import Model
+import csv
 app = Flask(__name__)
 
 @app.route('/api', methods = ['POST'])
@@ -25,6 +26,18 @@ def api():
 				'places': places,
 				'grouping': grouping
 				})
+
+		saves = []
+		saveline = query + ',' + intent + ',' + recipe + ',' + calendar + ',' + category + ',' + attributes + ',' + places + ',' + grouping + '\n'
+		saves.append(saveline)
+		with open('save_log.csv') as csvfile:
+			spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+			for row in spamreader:
+				saves.append(row[0] + ',' + row[1] + ',' + row[2] + ',' + row[3] + ',' + row[4] + ',' + row[5] + ',' + row[6] + ',' + row[7] + '\n')
+			filesave = open('save_log.csv', 'w')
+			for save in saves:
+				filesave.write(str(save))
+
 		return response
 	else:
 		return "Error, no input query provided"
