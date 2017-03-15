@@ -43,4 +43,4 @@ def api():
 		return "Error, no input query provided"
 
 if __name__ == "__main__":
-	app.run(host='52.178.129.16')
+	app.run(host='52.178.129.16', port=5000)
