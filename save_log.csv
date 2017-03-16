@@ -1,3 +1,1 @@
-compare profit from last month with this month,comparedata,revenue,this month, last month,sales,compare,month,
-create a new user,createuser,revenue,this month, last month,sales,create,
-show me revenue for last week,presentdata,revenue,last week,sales,show,last,
+'compare profit from last 5 month','comparedata','revenue','this month, last month','sales','compare','5',''

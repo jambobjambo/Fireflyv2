@@ -124,20 +124,33 @@ class Model():
 			saver.restore(sess, saver_locale)
 
 			predy = tf.nn.softmax(prediction)
+			correct_prediction = tf.equal(tf.argmax(prediction, 1), tf.argmax(y, 1))
+			confidence = tf.reduce_mean(tf.cast(correct_prediction, "float"))
 			query_input = query
 			query_input_vec = gen_query_vec(query_input, lexicon[0])
 			input_array = np.array(query_input_vec)
 			input_array = np.reshape(input_array, (-1, 1470))
 			classification = predy.eval({x: input_array})
+			y_vals = np.zeros(len(output_array))
+
+			confidencerate = 0
 			for i in range(len(classification[0])):
 				if classification[0][i] == 1.:
 					if in_query != True:
 						output_response = output_array[i]
+						y_vals[i] += 1
+						y_vals = np.reshape(y_vals, (-1, len(y_vals)))
+						confidencerate = confidence.eval({x: input_array, y: y_vals})
 					else:
 						query_split = query.split(" ")
 						if(i > len(query_split) - 1):
 							output_response = ""
+							y_vals[i] += 1
+							y_vals = np.reshape(y_vals, (-1, len(y_vals)))
+							confidencerate = confidence.eval({x: input_array, y: y_vals})
 						else:
 							output_response = query_split[i]
-
-		return output_response
+							y_vals[i] += 1
+							y_vals = np.reshape(y_vals, (-1, len(y_vals)))
+							confidencerate = confidence.eval({x: input_array, y: y_vals})
+		return output_response, str(confidencerate)
