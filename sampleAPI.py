@@ -7,7 +7,6 @@ app = Flask(__name__)
 
 @app.route('/api', methods = ['POST'])
 def api():
-	print(request.json['query'])
 	if request.json['query']:
 		query = request.json['query']
 		intent, intent_accuracy = Model.sample(query, "intent")
