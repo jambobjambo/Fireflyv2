@@ -3,6 +3,7 @@ import numpy as np
 import pickle
 import csv
 import nltk
+import json
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 lemmatizer = WordNetLemmatizer()
@@ -37,21 +38,6 @@ def gen_M_vec(line, array):
 			rep_index_value = array.index(rec.lower())
 			vec_amount[rep_index_value] += 1
 	return vec_amount
-
-def neural_network_model(data, hidden_1_layer, hidden_2_layer, hidden_3_layer, output_layer):
-	l1 = tf.add(tf.matmul(data,hidden_1_layer['weight']), hidden_1_layer['bias'])
-	l1 = tf.nn.relu(l1)
-
-	l2 = tf.add(tf.matmul(l1,hidden_2_layer['weight']), hidden_2_layer['bias'])
-	l2 = tf.nn.relu(l2)
-
-	l3 = tf.add(tf.matmul(l2,hidden_3_layer['weight']), hidden_3_layer['bias'])
-	l3 = tf.nn.relu(l3)
-
-	output = tf.matmul(l3,output_layer['weight']) + output_layer['bias']
-
-	return output
-
 
 class Model():
 	def sample(query, req):
@@ -93,71 +79,54 @@ class Model():
 
 		output_array = output_array[0]
 		n_classes = len(output_array)
+		input_size = len(train_q[0])
+		# input images
+		# None -> batch size can be any size, 784 -> flattened mnist image
+		x = tf.placeholder(tf.float32, shape=[None, input_size], name="x-input")
+		# target 10 output classes
+		y_ = tf.placeholder(tf.float32, shape=[None, n_classes], name="y-input")
 
-		n_nodes_hl1 = 1500
-		n_nodes_hl2 = 1500
-		n_nodes_hl3 = 1500
+		# model parameters will change during training so we use tf.Variable
+		W = tf.Variable(tf.zeros([input_size, n_classes]))
 
-		hidden_1_layer = {'f_fum':n_nodes_hl1,
-		                  'weight':tf.Variable(tf.random_normal([len(train_q[0]), n_nodes_hl1])),
-		                  'bias':tf.Variable(tf.random_normal([n_nodes_hl1]))}
+		# bias
+		b = tf.Variable(tf.zeros([n_classes]))
 
-		hidden_2_layer = {'f_fum':n_nodes_hl2,
-		                  'weight':tf.Variable(tf.random_normal([n_nodes_hl1, n_nodes_hl2])),
-		                  'bias':tf.Variable(tf.random_normal([n_nodes_hl2]))}
+		# implement model
+		# y is our prediction
+		y = tf.nn.softmax(tf.matmul(x,W) + b)
 
-		hidden_3_layer = {'f_fum':n_nodes_hl3,
-		                  'weight':tf.Variable(tf.random_normal([n_nodes_hl2, n_nodes_hl3])),
-		                  'bias':tf.Variable(tf.random_normal([n_nodes_hl3]))}
-
-		output_layer = {'f_fum':None,
-		                'weight':tf.Variable(tf.random_normal([n_nodes_hl3, n_classes])),
-		                'bias':tf.Variable(tf.random_normal([n_classes])),}
-
-		# Add ops to save and restore all the variables.
 		output_response = ""
-
-		prediction = neural_network_model(x, hidden_1_layer, hidden_2_layer, hidden_3_layer, output_layer)
 		with tf.Session() as sess:
 			sess.run(tf.global_variables_initializer())
 			saver = tf.train.Saver(tf.global_variables())
 			saver.restore(sess, saver_locale)
 
-			predy = tf.nn.softmax(prediction)
-			#correct_prediction = tf.equal(tf.argmax(prediction, 1))
-			#confidence = tf.reduce_mean(tf.cast(correct_prediction, "float"))
 			query_input = query
 			query_input_vec = gen_query_vec(query_input, lexicon[0])
 			input_array = np.array(query_input_vec)
 			input_array = np.reshape(input_array, (-1, 1470))
-			y_vals = np.zeros(len(output_array))
-			y_vals = np.reshape(y_vals, (-1, len(y_vals)))
-			classification = predy.eval({x: input_array, y: y_vals})
+			classification = y.eval({x: input_array})
 
 			confidencerate = 0
 
-			print(classification)
-			'''for i in range(len(classification[0])):
-				if classification[0][i] == 1.:
-					if in_query != True:
-						output_response = output_array[i]
-						y_vals[i] += 1
-						y_vals = np.reshape(y_vals, (-1, len(y_vals)))
-						#confidencerate = confidence.eval({x: input_array})
-						print(classification[0][i])
-					else:
-						query_split = query.split(" ")
-						if(i > len(query_split) - 1):
-							output_response = ""
-							y_vals[i] += 1
-							y_vals = np.reshape(y_vals, (-1, len(y_vals)))
-							print(classification[0][i])
-							#confidencerate = confidence.eval({x: input_array, y: y_vals})
-						else:
-							output_response = query_split[i]
-							y_vals[i] += 1
-							y_vals = np.reshape(y_vals, (-1, len(y_vals)))
-							print(classification[0][i])
-							#confidencerate = confidence.eval({x: input_array, y: y_vals})
-							'''
-		return output_response, str(confidencerate)
+			classification_array =[]
+			for i in range(len(classification[0])):
+				classification_array.append(classification[0][i])
+
+			json_list = {}
+			if in_query != True:
+				for i in range(len(classification_array)):
+					value = output_array[i]
+					confidence = classification_array[i]
+					#json_list += "{ 'value': " + value + ", 'confidence': " +  str(confidence) + "}"
+					json_list[str(value)] = str(confidence)
+
+			else:
+				for i in range(len(classification_array)):
+					value = i
+					confidence = classification_array[i]
+					#json_list += "{ 'value': " + str(value) + ", 'confidence': " +  str(confidence) + "}"
+					json_list[str(value)] = str(confidence)
+
+			return json_list
