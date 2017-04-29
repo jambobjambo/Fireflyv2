@@ -1,0 +1,8 @@
+Attributes:Location:NotTrained
+Calendar:Class:NotTrained
+Category:Class:NotTrained
+Intent:Class:NotTrained
+Places:Location:NotTrained
+Query:Text:NotTrained
+Recipe:Class:NotTrained
+Intents:Class:NotTrained

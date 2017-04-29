@@ -1,0 +1,6 @@
+Query,./Dictionary/Query.pickle
+Intent,./Dictionary/Intent.pickle
+Recipe,./Dictionary/Recipe.pickle
+Category,./Dictionary/Category.pickle
+Calendar,./Dictionary/Calendar.pickle
+Intents,./Dictionary/Intents.pickle

@@ -1,0 +1,90 @@
+INFO:werkzeug:127.0.0.1 - - [13/Apr/2017 12:44:30] "POST /train_net HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Trainer.py', reloading
+WARNING:root:No training model clarrified for Intents
+INFO:werkzeug:127.0.0.1 - - [13/Apr/2017 12:44:45] "POST /train_net HTTP/1.1" 200 -
+WARNING:root:No training model clarrified for Intents
+INFO:werkzeug:127.0.0.1 - - [13/Apr/2017 12:44:52] "POST /train_net HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Trainer.py', reloading
+WARNING:root:No training model clarrified for 'Intents'. In Trainer.py
+INFO:werkzeug:127.0.0.1 - - [13/Apr/2017 13:11:29] "POST /train_net HTTP/1.1" 500 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\BoilerPlate.py', reloading
+WARNING:root:No training model clarrified for 'Intents'. In Trainer.py
+INFO:werkzeug:127.0.0.1 - - [13/Apr/2017 13:14:00] "POST /train_net HTTP/1.1" 500 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\BoilerPlate.py', reloading
+WARNING:root:No training model clarrified for 'Intents'. In Trainer.py
+INFO:werkzeug:127.0.0.1 - - [13/Apr/2017 13:15:41] "POST /train_net HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\BoilerPlate.py', reloading
+WARNING:root:No training model clarrified for 'Intents'. In Trainer.py
+INFO:werkzeug:127.0.0.1 - - [13/Apr/2017 13:15:55] "POST /train_net HTTP/1.1" 200 -
+WARNING:root:No training model clarrified for 'Intents'. In Trainer.py
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2017 10:18:23] "POST /train_net HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2017 10:19:07] "POST /sample/Recipe HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Model.py', reloading
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2017 10:37:55] "POST /sample/Recipe HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Sample.py', reloading
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2017 10:38:53] "POST /sample/Recipe HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Model.py', reloading
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2017 10:40:13] "POST /sample/Recipe HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Model.py', reloading
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2017 10:40:51] "POST /sample/Recipe HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Sample.py', reloading
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2017 10:44:44] "POST /sample/Recipe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2017 10:47:10] "POST /sample HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2017 10:47:56] "POST /sample HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2017 10:48:07] "POST /sample HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2017 10:48:22] "POST /sample HTTP/1.1" 500 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Sample.py', reloading
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2017 10:50:05] "POST /sample HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Sample.py', reloading
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2017 10:50:25] "POST /sample HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Sample.py', reloading
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2017 11:09:19] "POST /train_net HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Trainer.py', reloading
+WARNING:root:No training model clarrified for 'Intents'. In Trainer.py
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2017 11:10:06] "POST /train_net HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Trainer.py', reloading
+WARNING:root:No training model clarrified for 'Intents'. In Trainer.py
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2017 11:10:34] "POST /train_net HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Trainer.py', reloading
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2017 11:11:42] "POST /train_net HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2017 12:07:44] "POST /sample/Recipe HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Model.py', reloading
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2017 12:08:23] "POST /sample/Recipe HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Model.py', reloading
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2017 12:08:47] "POST /sample/Recipe HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Model.py', reloading
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2017 12:09:29] "POST /sample/Recipe HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Sample.py', reloading
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2017 12:12:36] "POST /sample/Recipe HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Sample.py', reloading
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2017 12:14:57] "POST /sample/Recipe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2017 12:15:05] "POST /sample/Recipe HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Sample.py', reloading
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2017 12:15:59] "POST /sample/Recipe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2017 12:16:02] "POST /sample/Recipe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2017 12:16:04] "POST /sample/Recipe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2017 12:16:31] "POST /sample HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2017 12:16:44] "POST /sample HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Model.py', reloading
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2017 12:21:14] "POST /sample HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Model.py', reloading
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2017 12:21:31] "POST /sample HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Model.py', reloading
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2017 12:22:17] "POST /sample HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Model.py', reloading
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2017 12:22:50] "POST /sample HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/Apr/2017 12:40:20] "POST /buildnet HTTP/1.1" 500 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\BuildNET.py', reloading
+INFO:werkzeug:127.0.0.1 - - [28/Apr/2017 12:43:09] "POST /buildnet HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/Apr/2017 12:44:50] "POST /buildnet HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Sample.py', reloading
+INFO:werkzeug:127.0.0.1 - - [28/Apr/2017 12:49:04] "POST /train_net HTTP/1.1" 500 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Trainer.py', reloading
+INFO:werkzeug:127.0.0.1 - - [28/Apr/2017 12:49:49] "POST /train_net HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [28/Apr/2017 12:50:12] "POST /train_net HTTP/1.1" 500 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\Trainer.py', reloading
+INFO:werkzeug:127.0.0.1 - - [28/Apr/2017 13:36:48] "POST /train_net HTTP/1.1" 500 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\BuildNET.py', reloading
+INFO:werkzeug:127.0.0.1 - - [28/Apr/2017 13:52:11] "POST /buildnet HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\jamie\\Documents\\FireflyNLP\\BuildNET.py', reloading
+INFO:werkzeug:127.0.0.1 - - [28/Apr/2017 13:53:18] "POST /train_net HTTP/1.1" 200 -
